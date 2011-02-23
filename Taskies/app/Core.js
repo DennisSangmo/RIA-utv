@@ -15,14 +15,14 @@ Taskies.app.Core = function(){
 	 * @private
 	 * @type {IDBfacade}
 	 */
-	this.DBfacade = Taskies.app.facades.CouchDB;
+	this.DBfacade = new Taskies.app.facades.CouchDBFacade();
 	
 	/**
 	 * The library facadeobject
 	 * @private
 	 * @type {ILibraryfacade}
 	 */
-	this.Libraryfacade = Taskies.app.facades.ClosureLibraryFacade;
+	this.Libraryfacade = new Taskies.app.facades.ClosureLibraryFacade();
 	
 	return "NOT IMPLEMENTED!";
 }

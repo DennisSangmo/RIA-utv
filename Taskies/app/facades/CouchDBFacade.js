@@ -3,6 +3,6 @@
  * @constructor
  * @implements {IDBfacade}
  */
-Taskies.app.facades.CouchDB = function(){
+Taskies.app.facades.CouchDBFacade = function(){
 	return "NOT IMPLEMENTED!";
 }
