@@ -4,6 +4,7 @@
 Taskies = {};
 Taskies.app = {};
 Taskies.app.modules = {};
+Taskies.app.facades = {};
 
 /*
  * Constants

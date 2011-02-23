@@ -19,17 +19,15 @@ Taskies.app.modules.Details = function(sandbox) {
 Taskies.app.modules.Details.prototype.init = function() {
 	return "NOT IMPLEMENTED!";
 }
-
-/**
- * Show the specific details
- * @param {Object} taskie
- */
 Taskies.app.modules.Details.prototype.show = function(taskie) {
-	
+	return "NOT IMPLEMENTED!";
 }
 
+/**
+ * Hide the details
+ */
 Taskies.app.modules.Details.prototype.hide = function() {
-	
+	return "NOT IMPLEMENTED!";
 }
 
 /**
