@@ -10,6 +10,20 @@ Taskies.app.Core = function(){
 	 */
 	this.moduleList = [];
 	
+	/**
+	 * The Database facadeobject
+	 * @private
+	 * @type {IDBfacade}
+	 */
+	this.DBfacade = Taskies.app.facades.CouchDB;
+	
+	/**
+	 * The library facadeobject
+	 * @private
+	 * @type {ILibraryfacade}
+	 */
+	this.Libraryfacade = Taskies.app.facades.ClosureLibraryFacade;
+	
 	return "NOT IMPLEMENTED!";
 }
 
