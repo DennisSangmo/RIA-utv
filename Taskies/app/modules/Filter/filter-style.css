@@ -1,0 +1,26 @@
+#filter-content {
+	padding:15px;
+	width:670px;
+	background-color:#ccc;
+}
+
+#filter-content h3 {
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+
+#filter-content p {
+	margin:0 0 5px 0;
+	padding:0;
+}
+
+#filter-content input[type=text] {
+	width:300px;
+	padding:5px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -khtml-border-radius: 7px;
+    border-radius: 7px;
+	border:1px;
+}

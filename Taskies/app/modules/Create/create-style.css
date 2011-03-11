@@ -1,0 +1,35 @@
+#taskies-create {
+    position:absolute;
+    height:100%;
+    width:100%;
+    top: 0px;
+    left: 0px;
+}
+
+#create-overlay {
+    position:fixed;
+	left:0;
+	top:0;
+    height:100%;
+    width:100%;
+    background:#000;
+    filter:alpha(opacity=36);
+    -moz-opacity:0.36;
+    opacity:0.36;
+}
+
+#create-content {
+	position:fixed;
+	margin:25px auto;
+	padding:20px;
+	width:400px;
+	background-color:#fff;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+}
+
+#create-code {
+	width:40px;
+}

@@ -1,0 +1,31 @@
+#taskies-content {
+	margin:0 auto;
+	width:700px;
+	
+}
+
+#taskies-content #taskies-top {
+	
+}
+
+#taskies-content #taskies-bottom{
+	
+}
+
+
+.tag {
+	margin-right:5px;
+	border:2px solid darkred;
+	background:red;
+	padding:1px 3px;
+	display:inline-block;
+	font-weight:800;
+	color:#fff;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+}
+.hide {
+	display:none;
+}

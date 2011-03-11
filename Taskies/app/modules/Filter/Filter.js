@@ -9,44 +9,81 @@ Taskies.app.modules.Filter = function(sandbox) {
 	 * @type {Taskies.app.Sandbox}
 	 */
 	this.sandbox = sandbox;
-	
-	return "NOT IMPLEMENTED!";
-}
+	this.test = "test";
+};
+
+/**
+ * Content type variable
+ */
+Taskies.app.modules.Filter.moduleType = Taskies.app.constants.moduleTypes.FILTER;
 
 /**
  * Init-function, first to be called
  */
 Taskies.app.modules.Filter.prototype.init = function() {
-	return "NOT IMPLEMENTED!";
-}
+	this.view.draw(this.sandbox.myElement);
+	
+	goog.events.listen(this.view.elements.submit, 'click', this.submitFilter , false, this);
+	goog.events.listen(this.view.elements.create, 'click', function() {
+		this.sandbox.notify(Taskies.app.constants.events.CREATE);
+	} , false, this);
+};
 
 /**
- * Saves the new filter
+ * Eventfunction to applys the new filter.
+ * @param {object} e
  */
-Taskies.app.modules.Filter.prototype.save = function() {
-	return "NOT IMPLEMENTED!";
-}
+Taskies.app.modules.Filter.prototype.submitFilter = function(e) {
+	var te = (this.view.elements.search.value != "") ? this.view.elements.search.value : undefined,
+		ta = (this.view.elements.tags.value != "") ? this.view.elements.tags.value : undefined;
+	
+	if(ta) {
+		ta = ta.toString().split(',');
+	}
+	
+	this.sandbox.notify(Taskies.app.constants.events.FILTERUPDATE, Taskies.app.objects.Filter(te, ta));
+	return false;
+};
 
 /**
  * Destroy-function, last to be called
  */
 Taskies.app.modules.Filter.prototype.destroy = function() {
 	return "NOT IMPLEMENTED!";
-}
+};
 
 /**
  * Object containing the view of this module
  */
-Taskies.app.modules.Filter.view = {
+Taskies.app.modules.Filter.prototype.view = {
 	/**
-	 * ID of the main div-element
+	 * Object containing the div id's or thies elementobjects
 	 */
-	content: "filter-content",
+	elements: {
+		container: "filter-content",
+		search: "filter-search-field",
+		tags: "filter-tags-field",
+		submit: "filter-submit",
+		startdate: "filter-startdate",
+		enddate: "filter-enddate",
+		create: "filter-create"
+	},
 	
 	/**
-	 * Returns full html
+	 * Prints the html to the page
+	 * @param {object} myElement
 	 */
-	draw: function() {
-		return "<div>NOT IMPLEMENTED</div>";
+	draw: function(myElement){
+		var html = "<div id='" + this.elements.container + "'>"+
+		"<p><h3>Search</h3><input type='text' id='" + this.elements.search + "' /></p>"+
+		"<p><h3>Tags</h3><input type='text' id='" + this.elements.tags + "' /> (Separated with a comma ',')</p>"+
+		"<p><input type='button' value='Apply' id='" + this.elements.submit + "' />"+
+		"<input type='button' value='Create a new!' id='" + this.elements.create + "' /></p>"+
+		"</div>";
+		
+		goog.dom.append(myElement, goog.dom.htmlToDocumentFragment(html));
+		
+		// Change the strings to elements
+		this.elements = Taskies.helpers.redoElements(this.elements);
 	}
-}
+};
