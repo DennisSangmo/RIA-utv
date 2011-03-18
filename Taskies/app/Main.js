@@ -37,6 +37,11 @@ Taskies.app.constants = {
 		CREATE: "taskie-create"
 	},
 	
+	messageTypes:{
+		OK: "message-ok",
+		ERROR: "message-error"
+	},
+	
 	siteUrl: "http://localhost/Taskies/"
 };
 

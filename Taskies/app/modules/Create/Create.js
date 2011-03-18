@@ -70,8 +70,7 @@ Taskies.app.modules.Create.prototype.hide = function(){
  */
 Taskies.app.modules.Create.prototype.save = function(e) {
 	if(this.view.elements.code.value !== this._codeAnswer) {
-		// TODO error handling
-		alert("Wrong codeanswer!");
+		this.sandbox.showMessage("You have entered wrong answer to the antirobot question.", Taskies.app.constants.messageTypes.ERROR);
 		this.generateCode();
 		return false;	
 	}
@@ -97,11 +96,9 @@ Taskies.app.modules.Create.prototype.save = function(e) {
 	}
 	
 	var newObj = this.sandbox.saveTaskie(Taskies.app.objects.Taskie(undefined, name, desc, date, tags, tasks));
-	if(newObj != null){
-		this.sandbox.notify(Taskies.app.constants.events.DETAILSSELECT, newObj);
-	} else {
-		// TODO errorhandling
-	}
+	
+	this.sandbox.showMessage("Your Taskie has been saved.", Taskies.app.constants.messageTypes.OK);
+	
 	this.hide();
 	this.view.clear();
 };
@@ -161,7 +158,7 @@ Taskies.app.modules.Create.prototype.view = {
 	 */
 	draw: function(myElement){
 		var html = "<div id='" + this.elements.overlay + "'></div><div id='" + this.elements.container + "'>"+
-		"<div id='" + this.elements.close + "'>Klicka utanför för att stänga</div>"+
+		"<div id='" + this.elements.close + "'>Click outside to close<br />(your data will maintain).</div>"+
 		"<h2>Create a new Taskie</h2>"+
 		"<p><label for='" + this.elements.name + "'>Name</label><input type='text' id='" + this.elements.name + "' /></p>"+
 		"<p><label for='" + this.elements.desc + "'>Description</label><input type='text' id='" + this.elements.desc + "' /></p>"+

@@ -160,7 +160,7 @@ Taskies.app.modules.List.prototype.view = {
 					this.elements.detaillinks[id] = id;
 			}
 		} else {
-			html = "<div id='empty'>No Taskies matched your filter!</div>";
+			html = "<div id='empty'>No Taskies matched your filter! :(</div>";
 		}
 		
 		goog.dom.append(this.elements.container, goog.dom.htmlToDocumentFragment(html));

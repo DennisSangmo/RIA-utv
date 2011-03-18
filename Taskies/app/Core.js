@@ -29,6 +29,8 @@ Taskies.app.Core = function(container){
 	// Appys the html
 	this.view.draw(container);
 	
+	// Initually hide the message box
+	goog.dom.classes.add(this.view.elements.message, "hide");
 };
 
 /**
@@ -183,6 +185,43 @@ Taskies.app.Core.prototype.saveTaskie = function(taskie){
 };
 
 /**
+ * Displays a message in the message window
+ * @param {string} message
+ * @param {string} type
+ */
+Taskies.app.Core.prototype.showMessage = function(message, type){
+	goog.dom.classes.remove(this.view.elements.message, "hide");
+	
+	switch(type) {
+		case Taskies.app.constants.messageTypes.OK:
+			goog.dom.classes.add(this.view.elements.message, "message-ok");
+			goog.dom.append(this.view.elements.message, goog.dom.htmlToDocumentFragment("<p>Successful! Click here to remove this message.<br /><span class='message'>"+message+"</span></p>"));
+			break;
+		
+		case Taskies.app.constants.messageTypes.ERROR:
+			goog.dom.classes.add(this.view.elements.message, "message-error");
+			goog.dom.append(this.view.elements.message, goog.dom.htmlToDocumentFragment("<p>An error has occured! Click here to remove this message.<br /><span class='message'>"+message+"</span></p>"));
+			break;
+	}
+	
+	var wp = goog.dom.getViewportSize();
+	var left = (wp.width - 500)/2;
+	goog.dom.setProperties(this.view.elements.message, {'style': 'left:'+left+';'});
+	
+	goog.events.listen(this.view.elements.message, 'click', this.hideMessage, false, this);
+};
+
+/**
+ * Hides the message window
+ */
+Taskies.app.Core.prototype.hideMessage = function(){
+	goog.dom.classes.remove(this.view.elements.message, "message-error");
+	goog.dom.classes.remove(this.view.elements.message, "message-ok");
+	goog.dom.classes.add(this.view.elements.message, "hide");
+	goog.dom.removeChildren(this.view.elements.message);
+};
+
+/**
  * Main application view object
  */
 Taskies.app.Core.prototype.view = {
@@ -191,6 +230,7 @@ Taskies.app.Core.prototype.view = {
 	 */
 	elements: {
 		container: "taskies-content",
+		message: "taskies-message",
 		top: "taskies-top",
 		header: "taskies-header",
 		bottom: "taskies-bottom",
@@ -205,7 +245,7 @@ Taskies.app.Core.prototype.view = {
 	 */
 	draw: function(container){
 		var appDiv = goog.dom.getElement(container),
-			html = "<div id='" + this.elements.details + "'></div>"+
+			html = "<div class='' id='" + this.elements.message + "'></div><div id='" + this.elements.details + "'></div>"+
 			"<div id='" + this.elements.create + "'></div>"+
 			"<div id='" +
 			this.elements.top +

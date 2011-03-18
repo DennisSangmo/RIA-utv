@@ -30,3 +30,15 @@
 #list-content .list-row .description {
 	font-style:italic;
 }
+
+#list-content #empty {
+	width:770px;
+	display:inline-block;
+	padding:15px;
+	margin:15px 15px 0 0;
+	background-color:#aec6d1;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+}

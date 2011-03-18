@@ -64,3 +64,12 @@ Taskies.app.Sandbox.prototype.getTaskie = function(id){
 Taskies.app.Sandbox.prototype.saveTaskie = function(taskie){
 	return this.core.saveTaskie(taskie);
 };
+
+/**
+ * Displays a message in the message window
+ * @param {string} message
+ * @param {string} type
+ */
+Taskies.app.Sandbox.prototype.showMessage = function(message, type){
+	this.core.showMessage(message, type);
+};

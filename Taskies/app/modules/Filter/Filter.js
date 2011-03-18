@@ -29,11 +29,12 @@ Taskies.app.modules.Filter.prototype.init = function() {
 	} , false, this);
 	
 	// Show/hide tag helper text
-	goog.events.listen(this.view.elements.tags, 'focus', function(){
+	goog.events.listen(this.view.elements.tags, 'focus', function(e){
 		goog.dom.classes.add(this.view.elements.tagsDesc, "inputDesc");
 		goog.dom.classes.remove(this.view.elements.tagsDesc, "hide");
+		goog.dom.setProperties(this.view.elements.tagsDesc, {'style': 'top:'+(e.target.offsetTop)+'; left:' + (e.target.offsetLeft+e.target.offsetWidth+10) + ';'});
 	}, false, this);
-	goog.events.listen(this.view.elements.tags, 'blur', function(){
+	goog.events.listen(this.view.elements.tags, 'blur', function(e){
 		goog.dom.classes.add(this.view.elements.tagsDesc, "hide");
 		goog.dom.classes.remove(this.view.elements.tagsDesc, "inputDesc");
 	}, false, this);

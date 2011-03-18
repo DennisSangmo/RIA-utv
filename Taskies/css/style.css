@@ -19,11 +19,6 @@ body {
 	width:100%;
 }
 
-#taskies-content #taskies-bottom{
-	
-}
-
-
 .tag {
 	margin-right:5px;
 	border:2px solid #5C686D;
@@ -82,4 +77,42 @@ input[type=button] {
     -webkit-border-radius: 5px;
     -khtml-border-radius: 5px;
     border-radius: 5px;
+}
+
+#taskies-message {
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	font-size:1em;
+	font-family: 'helvetica', Georgia, arial, sans-serif;
+	font-weight:bold; 
+	cursor:pointer;
+	cursor:hand;
+	text-align: left;
+	padding: 10px 10px 10px 45px;
+	display:inline-block;
+	position:fixed;
+	top:50px;
+	z-index:9999;
+	width:500px;
+}
+#taskies-message .message{
+	font-weight:normal;
+}
+#taskies-message.message-ok {
+	color:#69A150;
+	background: #E7FFD6 url('../images/icons/accept.png') center no-repeat;
+	background-position: 15px 50%;
+	border-top: 2px solid #8CD76B;
+	border-bottom: 2px solid #8CD76B;
+	border:2px solid #8CD76B;
+}
+#taskies-message.message-error {
+	color:#AD5E5C; 
+	background: #FFE7E7 url('../images/icons/cancel.png') center no-repeat;
+	background-position: 15px 50%;
+	border-top: 2px solid #E77D7B;
+	border-bottom: 2px solid #E77D7B;
+	border:2px solid #E77D7B;
 }
