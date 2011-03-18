@@ -67,8 +67,8 @@ Taskies.app.Core.prototype.start = function(moduleId){
 			break;
 	}
 	
-	this.moduleList[moduleId].instnace = new this.moduleList[moduleId].creator(new Taskies.app.Sandbox(this, element));
-	this.moduleList[moduleId].instnace.init();
+	this.moduleList[moduleId].instance = new this.moduleList[moduleId].creator(new Taskies.app.Sandbox(this, element));
+	this.moduleList[moduleId].instance.init();
 };
 
 /**
@@ -155,7 +155,16 @@ Taskies.app.Core.prototype.fireCustomEvent = function(event, param){
  * @return {array<Taskies.app.objects.Taskie>}
  */
 Taskies.app.Core.prototype.getTaskies = function(filter){
-	return this.Datastorage.get(filter);
+	return this.Datastorage.getList(filter);
+};
+
+/**
+ * Returns the taskie from the datastorage
+ * @param {String} id
+ * @return {Taskies.app.objects.Taskie}
+ */
+Taskies.app.Core.prototype.getTaskie = function(id){
+	return this.Datastorage.get(id);
 };
 
 /**
@@ -183,6 +192,7 @@ Taskies.app.Core.prototype.view = {
 	elements: {
 		container: "taskies-content",
 		top: "taskies-top",
+		header: "taskies-header",
 		bottom: "taskies-bottom",
 		filter: "taskies-filter",
 		list: "taskies-list",
@@ -195,20 +205,18 @@ Taskies.app.Core.prototype.view = {
 	 */
 	draw: function(container){
 		var appDiv = goog.dom.getElement(container),
-			html = "<div id='" + this.elements.container + "'>" +
-			"<div id='" + this.elements.details + "'></div>"+
+			html = "<div id='" + this.elements.details + "'></div>"+
 			"<div id='" + this.elements.create + "'></div>"+
 			"<div id='" +
 			this.elements.top +
-			"'><div id='" +
+			"'><div id='"+this.elements.header+"'></div><div id='" +
 			this.elements.filter +
 			"'></div></div>" +
 			"<div id='" +
 			this.elements.bottom +
 			"'><div id='" +
 			this.elements.list +
-			"'> </div></div>" +
-			"</div>";
+			"'> </div></div>";
 		
 		goog.dom.append(appDiv, goog.dom.htmlToDocumentFragment(html));
 		

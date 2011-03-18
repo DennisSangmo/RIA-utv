@@ -18,7 +18,7 @@ Taskies.app.facades.CouchDBFacade = function(core) {
 	 * @type {string}
 	 * @private
 	 */
-	this._uri = "http://dennissangmo.se/Taskies/app/facades/php/";
+	this._uri = "http://localhost/Taskies/app/facades/php/";
 	
 	/**
 	 * @type {goog.XhrIo}
@@ -31,18 +31,14 @@ Taskies.app.facades.CouchDBFacade = function(core) {
  * Alerts the listupdate event
  * @param {Taskies.app.objects.Filter} filter
  */
-Taskies.app.facades.CouchDBFacade.prototype.get = function(filter){
+Taskies.app.facades.CouchDBFacade.prototype.getList = function(filter){
 	if (filter.Text == "" && filter.Tags.length == 0) {
 		
 		goog.net.XhrIo.send(this._uri+"all.php", goog.bind(function(e) {
 		    var target = e.target;
 			if(target.isSuccess()){
-				var tmp = [];
-				var json = target.getResponseJson();
-				for(var i in json.rows){
-					tmp.push(json.rows[i].value);
-				};
-				this._core.fireCustomEvent(Taskies.app.constants.events.LISTUPDATE, tmp);
+				var arr = this.jsonToObj(target.getResponseJson());
+				this._core.fireCustomEvent(Taskies.app.constants.events.LISTUPDATE, arr);
 			}
 		}, this));
 	}
@@ -63,17 +59,30 @@ Taskies.app.facades.CouchDBFacade.prototype.get = function(filter){
 			goog.net.XhrIo.send(this._uri + "getWithFilter.php", goog.bind(function(e){
 				var target = e.target;
 				if (target.isSuccess()) {
-					var tmp = [];
-					var json = target.getResponseJson();
-					for (var i in json.rows) {
-						tmp.push(json.rows[i].value);
-					};
-					this._core.fireCustomEvent(Taskies.app.constants.events.LISTUPDATE, tmp);
+					var arr = this.jsonToObj(target.getResponseJson());
+					this._core.fireCustomEvent(Taskies.app.constants.events.LISTUPDATE, arr);
 				}
 			}, this), "POST", "type=tag&text=" + filter.Tags[0]);
 		}
 	}
 	return true;
+};
+
+/**
+ * Fetches one Taskie from the couchDB
+ * @param {string} id
+ * @return {Taskies.objects.Taskie}
+ */
+Taskies.app.facades.CouchDBFacade.prototype.get = function(id){
+	goog.net.XhrIo.send(this._uri + "one.php", goog.bind(function(e){
+		var target = e.target;
+		if (target.isSuccess()) {
+			var arr = this.jsonToObj(target.getResponseJson());
+			if (arr.length == 1) {
+				this._core.fireCustomEvent(Taskies.app.constants.events.DETAILSSELECT, arr[0]);
+			}
+		}
+	}, this), "POST", "id="+id);
 };
 
 /**
@@ -91,4 +100,17 @@ Taskies.app.facades.CouchDBFacade.prototype.save = function(taskie) {
 			this._core.fireCustomEvent(Taskies.app.constants.events.LISTUPDATE);
 		}
 	}, this), "POST", Taskies.helpers.makePostReady(taskie));
+};
+
+/**
+ * CouchDB json to Taskie objects
+ * @param {object} json
+ * @return {Array<Taskies.app.objects.Taskie>}
+ */
+Taskies.app.facades.CouchDBFacade.prototype.jsonToObj = function(json){
+	var tmp = [];
+	for (var i in json.rows) {
+		tmp.push(json.rows[i].value);
+	};
+	return tmp;
 };

@@ -18,18 +18,29 @@
     opacity:0.36;
 }
 
+#create-close {
+	float:right;
+	color:gray;
+	font-size:10px;
+}
+
 #create-content {
 	position:fixed;
 	margin:25px auto;
 	padding:20px;
 	width:400px;
-	background-color:#fff;
+	overflow-y:auto;
+	background-color:#aec6d1;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     -khtml-border-radius: 15px;
     border-radius: 15px;
 }
 
+#create-content label {
+	display:block;
+	
+}
 #create-code {
 	width:40px;
 }

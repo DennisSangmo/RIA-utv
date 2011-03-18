@@ -18,14 +18,83 @@
     opacity:0.36;
 }
 
+#details-close {
+	float:right;
+	color:gray;
+	font-size:10px;
+}
+
 #details-content {
 	position:fixed;
 	margin:25px auto;
-	padding:10px;
-	width:400px;
-	background-color:#fff;
+	padding:15px;
+	width:470px;
+	overflow-y:auto;
+	background-color:#aec6d1;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px;
     -khtml-border-radius: 15px;
     border-radius: 15px;
+}
+
+#details-content h2 {
+	margin:15px 0 0 0;
+	padding:0;
+}
+
+#details-content .date {
+	margin-top:0;
+	font-size:10px;
+	color:gray;
+}
+
+#details-content .description {
+	font-style:italic;
+}
+
+#details-content #task-list{
+	margin: 20px 0;
+	background: url(images/ul_bg_repeat.gif) repeat-y; /*--Bg of the order numbers--*/
+	padding: 0 0 0 35px; /*--Distance between the order numbers--*/
+	border: 1px solid #111;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+}
+
+#details-content #task-list li{
+	margin: 0;
+	padding: 5px;
+	color: #aec6d1;
+	font-size: 18px;
+	font-weight: bold;
+       /*--The bevel look is styled with various colors in the border properties below--*/
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #353535;
+	border-right: 1px solid #333;
+	border-left: 1px solid #151515;
+	background: #5C686D;
+}
+
+#details-content #task-list li.first{
+	border-top: 1px solid #353535;
+    -moz-border-top-right-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -khtml-border-top-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+#details-content #task-list li.last{
+	border-bottom: none;
+    -moz-border-bottom-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    -khtml-border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#details-content #task-list li p{
+	color: #aec6d1;
+	font-size: 0.8em;
+	font-weight: normal;
 }

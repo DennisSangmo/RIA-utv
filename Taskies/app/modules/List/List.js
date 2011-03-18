@@ -111,7 +111,7 @@ Taskies.app.modules.List.prototype.clearList = function() {
  * Destroy-function, last to be called
  */
 Taskies.app.modules.List.prototype.destroy = function() {
-	return "NOT IMPLEMENTED!";
+	this.view.clear();
 };
 
 /**
@@ -149,18 +149,13 @@ Taskies.app.modules.List.prototype.view = {
 			for (var prop = 0; prop < taskies.length; prop++) {
 					var id = "taskie_" + taskies[prop]._id;
 					var d = new Date(taskies[prop].Created);
-					html += "<div class='list-row'>" +
-					"<h4><a href='#' tid='" + taskies[prop]._id + "' id='" +
-					id +
-					"' class='detaillink'>" +
-					taskies[prop].Name +
-					"</a></h4><p class='date'>" +
+					html += "<div class='list-row pointerCurser' id='" + id + "'>" +
+					"<h4>" + taskies[prop].Name +
+					" (" + taskies[prop].Tasks.length + ")</h4><p class='date'>" +
 					 + d.getDate() + "-" +  (d.getMonth()+1) + "-" + d.getFullYear() + " at " + d.getHours() + ":" + d.getMinutes() + 
-					"</p>" +
+					"</p><p class='description'>" +
 					taskies[prop].Description +
-					"</p>" +
-					"<p>Number of tasks: " + taskies[prop].Tasks.length + "</p>"+
-					"</div>";
+					"</p></div>";
 					
 					this.elements.detaillinks[id] = id;
 			}

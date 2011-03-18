@@ -1,11 +1,6 @@
 #list-content {
-	padding:15px;
-	width:670px;
-	background-color:lightgreen;
-}
-
-#list-content .list-row {
-	border-bottom:dashed #fff 1px;
+	width:830px;
+	margin:0 auto 30px auto;
 }
 
 #list-content h4 {
@@ -13,8 +8,25 @@
 	margin:5px 0 0 0;
 }
 
-#list-content .date {
+#list-content .list-row {
+	width:370px;
+	display:inline-block;
+	padding:15px;
+	margin:15px 15px 0 0;
+	background-color:#aec6d1;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+	
+}
+
+#list-content .list-row .date {
 	margin-top:0;
 	font-size:10px;
 	color:gray;
+}
+
+#list-content .list-row .description {
+	font-style:italic;
 }

@@ -1,11 +1,22 @@
-#taskies-content {
-	margin:0 auto;
-	width:700px;
-	
+body {
+	margin:0;
+	padding:0;
+	font-family:Vollkorn, arial, serif;
+	background-color:#BED9E5;
+	color:#5C686D;
+}
+
+#taskies-header {
+	position:fixed;
+	left:0;
+	top:0;
+	width:300px;
+	height:300px;
+	background:url(../images/header.png) no-repeat;
 }
 
 #taskies-content #taskies-top {
-	
+	width:100%;
 }
 
 #taskies-content #taskies-bottom{
@@ -15,17 +26,60 @@
 
 .tag {
 	margin-right:5px;
-	border:2px solid darkred;
-	background:red;
+	border:2px solid #5C686D;
+	background:#A5BBC4;
 	padding:1px 3px;
 	display:inline-block;
 	font-weight:800;
 	color:#fff;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -khtml-border-radius: 8px;
-    border-radius: 8px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -khtml-border-radius: 7px;
+    border-radius: 7px;
 }
 .hide {
 	display:none;
+}
+
+a {
+	color:#5C686D;
+}
+
+.pointerCurser {
+	cursor: pointer;
+	cursor: hand;
+}
+
+input[type=text] {
+	margin:3px;
+	width:300px;
+	padding:5px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -khtml-border-radius: 7px;
+    border-radius: 7px;
+	border:1px;
+	color:#5C686D;
+	font-weight:800;
+}
+
+input[type=button] {
+	padding:8px;
+	margin:5px;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.01, rgb(190,217,229)),
+	    color-stop(1, rgb(149,170,179))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(190,217,229) 1%,
+	    rgb(149,170,179) 100%
+	);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
 }

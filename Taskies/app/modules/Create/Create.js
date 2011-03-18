@@ -50,7 +50,11 @@ Taskies.app.modules.Create.prototype.show = function() {
 	
 	var wp = goog.dom.getViewportSize();
 	var left = (wp.width - 440)/2;
-	goog.dom.setProperties(this.view.elements.container, {'style': 'left:'+left+';'});
+	if(wp.height<600)
+		var height = wp.height-70;
+	else
+		var height = 600;
+	goog.dom.setProperties(this.view.elements.container, {'style': 'left:'+left+'; height:' + height + 'px;'});
 };
 
 /**
@@ -95,12 +99,11 @@ Taskies.app.modules.Create.prototype.save = function(e) {
 	var newObj = this.sandbox.saveTaskie(Taskies.app.objects.Taskie(undefined, name, desc, date, tags, tasks));
 	if(newObj != null){
 		this.sandbox.notify(Taskies.app.constants.events.DETAILSSELECT, newObj);
-		this.hide();
-		this.view.clear();
 	} else {
 		// TODO errorhandling
-		alert("The Taskie could not be saved!");
 	}
+	this.hide();
+	this.view.clear();
 };
 
 Taskies.app.modules.Create.prototype.generateCode = function(){
@@ -115,7 +118,14 @@ Taskies.app.modules.Create.prototype.generateCode = function(){
  * Destroy-function, last to be called
  */
 Taskies.app.modules.Create.prototype.destroy = function() {
-	return "NOT IMPLEMENTED!";
+	this.hide();
+	this.view.clear();
+	
+	goog.events.removeAll(this.view.elements.addTag);
+	goog.events.removeAll(this.view.elements.addTask);
+	goog.events.removeAll(this.view.elements.save);
+	goog.events.removeAll(this.view.elements.reset);
+	goog.events.removeAll(this.view.elements.overlay);
 };
 
 /**
@@ -128,6 +138,7 @@ Taskies.app.modules.Create.prototype.view = {
 	elements: {
 		overlay: "create-overlay",
 		container: "create-content",
+		close: "details-close",
 		name: "create-name-fiels",
 		desc: "create-desc-field",
 		tags: "create-tags",
@@ -149,12 +160,14 @@ Taskies.app.modules.Create.prototype.view = {
 	 * @param {object} myElement
 	 */
 	draw: function(myElement){
-		var html = "<div id='" + this.elements.overlay + "'></div><div id='" + this.elements.container + "'><h2>Create a new Taskie</h2>"+
+		var html = "<div id='" + this.elements.overlay + "'></div><div id='" + this.elements.container + "'>"+
+		"<div id='" + this.elements.close + "'>Klicka utanför för att stänga</div>"+
+		"<h2>Create a new Taskie</h2>"+
 		"<p><label for='" + this.elements.name + "'>Name</label><input type='text' id='" + this.elements.name + "' /></p>"+
-		"<p><label for='" + this.elements.desc + "'>Description</h3><input type='text' id='" + this.elements.desc + "' /></p>"+
+		"<p><label for='" + this.elements.desc + "'>Description</label><input type='text' id='" + this.elements.desc + "' /></p>"+
 		"<p><h3>Tags <input type='button' id='" + this.elements.addTag + "' value='+' /></h3><ol id='" + this.elements.tags + "'><li><input type='text' class='" + this.elements.classes.tag + "' /></li></ol></p>"+
 		"<p><h3>Tasks <input type='button' id='" + this.elements.addTask + "' value='+' /></h3><ol id='" + this.elements.tasks + "'><li><input type='text' class='" + this.elements.classes.task + "' /></li></ol></p>"+
-		"<p><h3>Anti robots</h3><label for='" + this.elements.code + "' id='" + this.elements.codeText + "'></label><input type='text' id='" + this.elements.code + "' /></p>"+
+		"<p><h3>Anti robots</h3><span id='" + this.elements.codeText + "'></span><input type='text' id='" + this.elements.code + "' /></p>"+
 		"<p><input type='button' value='Save' id='" + this.elements.save + "' /><input type='button' value='Reset' id='" + this.elements.reset + "' /></p>"+
 		"</div>";
 		

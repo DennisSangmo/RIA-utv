@@ -48,6 +48,15 @@ Taskies.app.Sandbox.prototype.getTaskies = function(filter){
 };
 
 /**
+ * Returns a taskie from id
+ * @param {string} id
+ * @return {Taskies.app.objects.Taskie}
+ */
+Taskies.app.Sandbox.prototype.getTaskie = function(id){
+	return this.core.getTaskie(id);
+};
+
+/**
  * Saves a taskie to the data storage
  * @param {Taskies.app.objects.Taskie} taskie
  * @return {object}

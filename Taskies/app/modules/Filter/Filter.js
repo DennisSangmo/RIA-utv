@@ -27,6 +27,16 @@ Taskies.app.modules.Filter.prototype.init = function() {
 	goog.events.listen(this.view.elements.create, 'click', function() {
 		this.sandbox.notify(Taskies.app.constants.events.CREATE);
 	} , false, this);
+	
+	// Show/hide tag helper text
+	goog.events.listen(this.view.elements.tags, 'focus', function(){
+		goog.dom.classes.add(this.view.elements.tagsDesc, "inputDesc");
+		goog.dom.classes.remove(this.view.elements.tagsDesc, "hide");
+	}, false, this);
+	goog.events.listen(this.view.elements.tags, 'blur', function(){
+		goog.dom.classes.add(this.view.elements.tagsDesc, "hide");
+		goog.dom.classes.remove(this.view.elements.tagsDesc, "inputDesc");
+	}, false, this);
 };
 
 /**
@@ -60,9 +70,11 @@ Taskies.app.modules.Filter.prototype.view = {
 	 * Object containing the div id's or thies elementobjects
 	 */
 	elements: {
+		wrapper: "filter-wrapper",
 		container: "filter-content",
 		search: "filter-search-field",
 		tags: "filter-tags-field",
+		tagsDesc: "filter-tags-description",
 		submit: "filter-submit",
 		startdate: "filter-startdate",
 		enddate: "filter-enddate",
@@ -74,12 +86,12 @@ Taskies.app.modules.Filter.prototype.view = {
 	 * @param {object} myElement
 	 */
 	draw: function(myElement){
-		var html = "<div id='" + this.elements.container + "'>"+
-		"<p><h3>Search</h3><input type='text' id='" + this.elements.search + "' /></p>"+
-		"<p><h3>Tags</h3><input type='text' id='" + this.elements.tags + "' /> (Separated with a comma ',')</p>"+
+		var html = "<div id='" + this.elements.wrapper + "'><div id='" + this.elements.container + "'>"+
+		"<h3>Search</h3><input type='text' id='" + this.elements.search + "' />"+
+		"<h3>Tags</h3><input type='text' id='" + this.elements.tags + "' /> <p class='hide' id='"+this.elements.tagsDesc+"'>(Separated with a comma ',')</p>"+
 		"<p><input type='button' value='Apply' id='" + this.elements.submit + "' />"+
 		"<input type='button' value='Create a new!' id='" + this.elements.create + "' /></p>"+
-		"</div>";
+		"</div></div>";
 		
 		goog.dom.append(myElement, goog.dom.htmlToDocumentFragment(html));
 		

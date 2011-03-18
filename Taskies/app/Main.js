@@ -35,7 +35,9 @@ Taskies.app.constants = {
 		FILTERUPDATE: "taskie-filter-update",
 		DETAILSSELECT: "taskie-details-select",
 		CREATE: "taskie-create"
-	}
+	},
+	
+	siteUrl: "http://localhost/Taskies/"
 };
 
 /*
@@ -48,4 +50,12 @@ window.onload = function(){
 	core.register("details", Taskies.app.modules.Details);
 	core.register("create", Taskies.app.modules.Create);
 	core.startAll();
+	
+	var getArgs = Taskies.helpers.getUrlVars();
+	
+	if(getArgs.length > 0){
+		if(getArgs['details']){
+			core.getTaskie(getArgs['details']);
+		}
+	}
 };
