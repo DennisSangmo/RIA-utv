@@ -72,7 +72,13 @@ Taskies.app.modules.Create.prototype.save = function(e) {
 	if(this.view.elements.code.value !== this._codeAnswer) {
 		this.sandbox.showMessage("You have entered wrong answer to the antirobot question.", Taskies.app.constants.messageTypes.ERROR);
 		this.generateCode();
-		return false;	
+		return false;
+	}
+	
+	if(this.view.elements.name.value == "" || this.view.elements.desc.value == "") {
+		this.sandbox.showMessage("Please enter a name and description!", Taskies.app.constants.messageTypes.ERROR);
+		this.generateCode();
+		return false;
 	}
 	
 	var dateObj = new Date();
@@ -86,13 +92,17 @@ Taskies.app.modules.Create.prototype.save = function(e) {
 		nodeTasks =  goog.dom.getElementsByClass(this.view.elements.classes.task, this.view.elements.tasks);
 	
 	for(var i in nodeTags) {
-		if(nodeTags[i].type == "text" && nodeTags[i].value != "")
-			tags.push(nodeTags[i].value);
+		if(nodeTags[i].type == "text" && nodeTags[i].value != "") {
+			if(nodeTags[i].value != "")
+				tags.push(nodeTags[i].value);
+		}
 	}
 	
 	for(var j in nodeTasks) {
-		if(nodeTasks[j].type == "text" && nodeTasks[j].value != undefined)
-			tasks.push(nodeTasks[j].value);
+		if(nodeTasks[j].type == "text" && nodeTasks[j].value != undefined){
+			if(nodeTasks[j].value != "")
+				tasks.push(nodeTasks[j].value);
+		}
 	}
 	
 	var newObj = this.sandbox.saveTaskie(Taskies.app.objects.Taskie(undefined, name, desc, date, tags, tasks));

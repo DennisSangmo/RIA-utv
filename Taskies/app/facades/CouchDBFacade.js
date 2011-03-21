@@ -54,7 +54,7 @@ Taskies.app.facades.CouchDBFacade.prototype.getList = function(filter){
 					};
 					this._core.fireCustomEvent(Taskies.app.constants.events.LISTUPDATE, tmp);
 				}
-			}, this), "POST", "type=name&text=" + filter.Text);
+			}, this), "POST", "type=name&text=" + filter.Text.toLowerCase());
 		} else if(filter.Tags.length != 0){
 			goog.net.XhrIo.send(this._uri + "getWithFilter.php", goog.bind(function(e){
 				var target = e.target;

@@ -28,3 +28,18 @@
 	
 	display:inline-block;
 }
+#filter-create-wrapper {
+	background-color:#BED9E5;
+	color: #5C686D;
+}
+#filter-create {
+	width:785px;
+	display:inline-block;
+	padding:15px;
+	margin:15px 0  0 15px;
+	background-color:#aec6d1;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+    border-radius: 15px;
+}
